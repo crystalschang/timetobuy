@@ -1,7 +1,7 @@
 var request = require('request');
 
-var ssid = 'AC2cff67a642fc015fef390f34f737ce72';
-var token = '10e06982206e79ec2acfa7308b427b14';
+var ssid = process.env.TWILIO_SSID;
+var token = process.env.TWILIO_TOKEN;
 var productId = 108000;
 var styleId = 15648;
 var stockId = 10261768;
@@ -16,8 +16,8 @@ request(url, function (error, response, body) {
         var tUrl = 'https://api.twilio.com/2010-04-01/Accounts/AC2cff67a642fc015fef390f34f737ce72/SMS/Messages.json';
         request.post(tUrl, {
             form: {
-              From: '+18184357067',
-              To: '+18185776846',
+              From: process.env.PHONE_FROM,
+              To: process.env.PHONE_TO,
               Body: 'TIME TO BUY YOUR DRESS! ONLY 1 LEFT!'
             },
             auth: {
